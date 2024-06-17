@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>News Dashboard</h1>
+            <div class="controls">
+                <label for="region-select">Region:</label>
+                <select id="region-select" aria-label="Select Region">
+                    <option value="us">United States</option>
+                    <option value="gb">United Kingdom</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                    <option value="in">India</option>
+                    <option value="world">International</option>
+                </select>
+
+                <label for="category-select">Category:</label>
+                <select id="category-select" aria-label="Select Category">
+                    <option value="general">General</option>
+                    <option value="business">Business</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="health">Health</option>
+                    <option value="science">Science</option>
+                    <option value="sports">Sports</option>
+                    <option value="technology">Technology</option>
+                </select>
+            </div>
+        </header>
+        <main id="news-container" role="main">
+        </main>
+        <div class="loading-indicator" aria-live="polite">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5" stroke="#1e90ff"></circle>
+            </svg>
+            <p>Loading...</p>
+        </div>
+        <div id="error-message" class="error-message" role="alert"></div>
+        <button id="load-more" class="load-more-btn" aria-label="Load more news">Load More</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
