@@ -1,10 +1,28 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f9;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
-    color: #333333;
     transition: background-color 0.3s, color 0.3s;
+}
+
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333333;
+    --link-color: #1e90ff;
+    --link-hover-color: #ff6f61;
+    --bg-color-dark: #121212;
+    --text-color-dark: #ffffff;
+    --link-color-dark: #bb86fc;
+    --link-hover-color-dark: #ff6f61;
+}
+
+[data-theme="dark"] {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --link-color: var(--link-color-dark);
+    --link-hover-color: var(--link-hover-color-dark);
 }
 
 .container {
@@ -18,7 +36,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #1e90ff, #ff6f61); 
+    background: linear-gradient(135deg, #1e90ff, #ff6f61);
     color: #ffffff;
     padding: 1em;
     text-align: center;
@@ -43,7 +61,7 @@ header h1 {
     color: #ffffff;
 }
 
-.controls select {
+.controls select, .controls button {
     padding: 10px;
     margin-left: 10px;
     border-radius: 8px;
@@ -54,12 +72,36 @@ header h1 {
     transition: border-color 0.3s;
 }
 
-.controls select:focus {
+.controls select:focus, .controls button:focus {
     border-color: #1e90ff;
 }
 
-.controls label[for="category-select"] {
-    margin-left: 20px; 
+.controls button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.bookmark-btn {
+    margin-left: 15px;
+    background-color: #ff6f61;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.bookmark-btn:hover {
+    background-color: #e55b50;
+    transform: translateY(-2px);
+}
+
+.bookmark-icon {
+    margin-left: 10px;
+    font-size: 20px;
 }
 
 #news-container {
@@ -80,11 +122,17 @@ header h1 {
     align-items: center;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
 }
 
 .news-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .news-card:hover {
+    border: 2px solid #bb86fc;
 }
 
 .news-card img {
@@ -109,7 +157,7 @@ header h1 {
 }
 
 .news-card a {
-    color: #ff6f61;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: bold;
     margin-top: auto;
@@ -117,8 +165,26 @@ header h1 {
 }
 
 .news-card a:hover {
-    color: #ffb400;
+    color: var(--link-hover-color);
     text-decoration: underline;
+}
+
+.news-card .bookmark-btn, .news-card .remove-bookmark-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6f61;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.news-card .bookmark-btn:hover, .news-card .remove-bookmark-btn:hover {
+    background-color: #e55b50;
+    transform: translateY(-2px);
 }
 
 .loading-indicator {
@@ -130,25 +196,25 @@ header h1 {
     display: none;
 }
 
-.loading-indicator svg {
+.loading-indicator .spinner {
     width: 50px;
     height: 50px;
-    animation: rotate 2s linear infinite;
-    stroke: #1e90ff;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #1e90ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .loading-indicator p {
     font-size: 18px;
-    color: #333333;
+    color: var(--text-color);
     margin-top: 10px;
 }
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 
 .error-message {
     color: #ff6f61;
@@ -156,9 +222,13 @@ header h1 {
     text-align: center;
     margin-top: 20px;
     font-weight: bold;
+    background-color: #ffdddd;
+    border: 1px solid #ff6f61;
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
 }
 
-/* Load More Button Styles */
 .load-more-btn {
     display: block;
     margin: 20px auto;
