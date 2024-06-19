@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Advanced News Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -22,7 +22,7 @@
                     <option value="world">International</option>
                 </select>
 
-                <label for="category-select">Category:</label>
+                <label for="category-select" style="margin-left: 15px;">Category:</label>
                 <select id="category-select" aria-label="Select Category">
                     <option value="general">General</option>
                     <option value="business">Business</option>
@@ -32,14 +32,15 @@
                     <option value="sports">Sports</option>
                     <option value="technology">Technology</option>
                 </select>
+
+                <button id="toggle-theme" aria-label="Toggle Theme">🌙</button>
+                <button id="view-bookmarks" class="bookmark-btn" aria-label="View bookmarked news">Bookmarks</button>
+                <button id="back-to-news" class="bookmark-btn" aria-label="Back to news" style="display: none;">Back to News</button>
             </div>
         </header>
-        <main id="news-container" role="main">
-        </main>
-        <div class="loading-indicator" aria-live="polite">
-            <svg class="spinner" viewBox="0 0 50 50">
-                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5" stroke="#1e90ff"></circle>
-            </svg>
+        <main id="news-container" role="main"></main>
+        <div class="loading-indicator" aria-live="polite" aria-busy="true">
+            <div class="spinner"></div>
             <p>Loading...</p>
         </div>
         <div id="error-message" class="error-message" role="alert"></div>
